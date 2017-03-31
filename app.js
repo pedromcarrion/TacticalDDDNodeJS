@@ -17,4 +17,4 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.get('/', placesController.places.bind(placesController));
+app.get('/users/:userId', placesController.places.bind(placesController));

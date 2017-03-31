@@ -3,18 +3,19 @@ import PlacesRepository from '../../infrastructure/placesrepository';
 
 export default class PlacesController{
     constructor(){
-        let placesrepository = new PlacesRepository();
+        let placesrepository = new PlacesRepository('127.0.0.1', 8889,'root','root','dddnodejs');
         this.placesservice = new PlacesService(placesrepository);
     }
 
     places(req, res){
-        if(1 === 1){
-            this.placesservice.getUserPlaces(1).then( (values) => {
-                res.status(200).json(
+        if(req.params.userId){
+            this.placesservice.getUserPlaces(req.params.userId).then(user => {
+                res.status(200)
+                .json(
                     {
-                        user: values[0],
-                        places: values[1]
-                    });
+                        user: user
+                    }
+                );
             });
         }
         else{
