@@ -12,7 +12,8 @@ Elementos que pretende explicar el ejemplo:
     4. Anidar promises
     5. Usar knex para acceso a mysql
 
-TODO
+TODO:
+
     1. Parametrizar por configuración los datos de acceso a la base de datos
     2. Configurar VSCode para depurar ES6 con babel
     3. Securizar mediante JWT
