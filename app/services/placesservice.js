@@ -3,22 +3,23 @@ class PlacesService {
         this.repository = placesRepository;
     }
 
-    getUserPlaces(userId){
+    async getUserPlaces(userId){
+        try {
+            var user = await this.repository.getUser(userId);
+            var places = await this.repository.getPlaces(user.id);
+            user.setPlaces(places);
 
-         return this.repository.getUser(userId).then(user => {
-            return this.repository.getPlaces(user.id).then((places) => {
-                user.setPlaces(places);
-
-                return new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
                     if(user){
                         resolve(user);
                     }else{
                         reject('error!!!!')
                     }
                 });
-            }).catch(err => { console.log('Error llamando a getPlaces del repository')});
-        }).catch(err => { console.log('Error llamando a getUser del repository')});
 
+        } catch(err) {
+            console.log('Error en el método getUserPlaces de PlacesService', err);
+        }
     }
 }
 

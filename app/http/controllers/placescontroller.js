@@ -7,16 +7,10 @@ class PlacesController{
         this.placesservice = new PlacesService(placesrepository);
     }
 
-    places(req, res){
+    async places(req, res){
         if(req.params.userId){
-            this.placesservice.getUserPlaces(req.params.userId).then(user => {
-                res.status(200)
-                .json(
-                    {
-                        user: user
-                    }
-                );
-            });
+            let user = await this.placesservice.getUserPlaces(req.params.userId);
+            res.status(200).json({user: user});
         }
         else{
             res.status(500).json("Es necesario un id de usuario válido");

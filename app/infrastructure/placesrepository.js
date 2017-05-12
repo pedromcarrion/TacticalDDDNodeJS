@@ -12,7 +12,7 @@ class PlacesRepository{
         this.database = database;
     }
 
-    getKenex(){
+    async getKenex(){
         return new Knex({
                         client: 'mysql',
                         connection: {
@@ -26,34 +26,41 @@ class PlacesRepository{
     }
     
 
-    getUser(userId){
-        let knex = this.getKenex();
+    async getUser(userId){
         return new Promise((resolve, reject) => {
-            knex.columns('id_user','name').where({id_user: userId}).select().from('users').then(function(rows){
+            
+            try {
+                let knex = this.getKenex();
+                let rows = await(knex.columns('id_user','name').where({id_user: userId}).select().from('users'));
+                
                 if(rows.length > 0){
                     return resolve(new User(rows[0].id_user, rows[0].name));
                 } else { 
                     return reject('El usuario no existe en la BBDD, id: ' + userId);
                 }
-            }).catch(function(error){
+            }
+            catch(err) {
                 console.log('Error en el método getUser de PlacesRepository',error);
                 return reject(error);
-            }).finally(function() {
+            }
+            finally{
                 knex.destroy();
-            });;
+            }
         });
-
-        connection.close();
     }
 
     getPlaces(userId){
-        let knex = this.getKenex();
+        
 
         return new Promise((resolve, reject) => {
-            knex.columns('link','date','description', 'status','image','category','name','longitude','latitude')
+
+            let knex = this.getKenex();
+            let rows = await(knex.columns('link','date','description', 'status','image','category','name','longitude','latitude')
             .where({id_user: userId})
             .select()
-            .from('places').innerJoin('places_base','places.id_place_base','places_base.id_place_base').then(function(rows){
+            .from('places').innerJoin('places_base','places.id_place_base','places_base.id_place_base'));
+
+            try{
                 var places = [];
 
                 for(let i = 0, length = rows.length; i < length; i++){
@@ -62,12 +69,14 @@ class PlacesRepository{
                 }
             
                 return resolve(places);
-            }).catch(function(error){
+            }
+            catch(err){
                 console.log('Error en el método getPlaces de PlacesRepository',error);
                 return reject(error);
-            }).finally(function() {
-                knex.destroy();
-            });;
+            }
+            finally{
+                 knex.destroy();
+            }
         });
         
     }       
