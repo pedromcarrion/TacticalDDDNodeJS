@@ -4,7 +4,7 @@
   "description": "A Sample app with DDD architecture in Node.js",
   "main": "app.js",
   "scripts": {
-    "start": "babel-node app.js --presets es2015,stage-2",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

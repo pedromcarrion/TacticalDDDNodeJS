@@ -1,7 +1,7 @@
-import PlacesService from '../../services/placesservice';
-import PlacesRepository from '../../infrastructure/placesrepository';
+const PlacesService = require('../../services/placesservice');
+const PlacesRepository = require('../../infrastructure/placesrepository');
 
-export default class PlacesController{
+class PlacesController{
     constructor(){
         let placesrepository = new PlacesRepository('127.0.0.1', 8889,'root','root','dddnodejs');
         this.placesservice = new PlacesService(placesrepository);
@@ -23,3 +23,5 @@ export default class PlacesController{
         }
     }
 }
+
+module.exports = PlacesController;

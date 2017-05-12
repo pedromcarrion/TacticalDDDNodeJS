@@ -1,4 +1,4 @@
-export default class User {
+class User {
     constructor(id, name, places = []){
         this.id = id;
         this.name = name;
@@ -9,3 +9,5 @@ export default class User {
         this.places = places;
     }
 }
+
+module.exports = User;

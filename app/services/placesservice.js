@@ -1,5 +1,4 @@
-
-export default class PlacesService {
+class PlacesService {
     constructor(placesRepository){
         this.repository = placesRepository;
     }
@@ -22,3 +21,5 @@ export default class PlacesService {
 
     }
 }
+
+module.exports = PlacesService;

@@ -1,9 +1,9 @@
-import User from '../domain/user';
-import Place from '../domain/place';
-import mysl from 'mysql';
-import Knex from 'knex';
+const User = require('../domain/user');
+const Place = require('../domain/place');
+const mysql = require('mysql');
+const Knex = require('knex');
 
-export default class PlacesRepository{
+class PlacesRepository{
     constructor(host, port, user, password, database){
         this.host = host;
         this.port = port;
@@ -73,3 +73,5 @@ export default class PlacesRepository{
     }       
 
 }
+
+module.exports = PlacesRepository;

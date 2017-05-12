@@ -1,6 +1,6 @@
-import PlaceBase from './placebase';
+const PlaceBase = require('./placebase');
 
-export default class Place extends PlaceBase{
+class Place extends PlaceBase{
     constructor(link, date, description, status, image, category, name, latitude, longitude){
         super(name, latitude, longitude);
         this.link = link;
@@ -11,3 +11,5 @@ export default class Place extends PlaceBase{
         this.category = category;
     }
 }
+
+module.exports = PlaceBase;

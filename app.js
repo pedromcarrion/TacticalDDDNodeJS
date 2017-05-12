@@ -1,6 +1,6 @@
 'use strict';
 
-import PlacesController from './app/http/controllers/placescontroller';
+const PlacesController = require('./app/http/controllers/placescontroller');
 
 const express = require('express');
 const bodyParser = require('body-parser');
