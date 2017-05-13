@@ -13,13 +13,12 @@ Elementos que pretende explicar el ejemplo:
     5. Usar knex para acceso a mysql
     6. Cambiar import por require, así no se necesita babel para compilar
     7. Utilización de async await
+    8. Parametrizar por configuración los datos de acceso a la base de datos y el puerto de la aplicación
 
 TODO:
-
-    1. Parametrizar por configuración los datos de acceso a la base de datos
-    2. Configurar VSCode para depurar ES6 con babel
-    3. Securizar mediante JWT
-    4. Unit testing
-    5. Dockerizar app
+    1. Dockerizar app
+    2. Securizar mediante JWT
+    3. Unit testing
+    
 
 

@@ -1,9 +1,10 @@
 const PlacesService = require('../../services/placesservice');
 const PlacesRepository = require('../../infrastructure/placesrepository');
+const Config = require('../../configuration/config');
 
 class PlacesController{
     constructor(){
-        let placesrepository = new PlacesRepository('127.0.0.1', 8889,'root','root','dddnodejs');
+        let placesrepository = new PlacesRepository(Config.db.host, Config.db.port, Config.db.user,Config.db.password,Config.db.database);
         this.placesservice = new PlacesService(placesrepository);
     }
 
